@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Url Shortner</title>
+  </head>
+  <body>
+    <div class="Container">
+      <h1>URL Shortner</h1>
+      <form action="" id="shortenForm">
+        <label for="">Enter URL: </label><br />
+        <input type="text" name="url" id="url" /><br />
+        <label for="">Enter ShortCode: </label><br />
+        <input type="text" name="shortcode" id="shortcode" /><br />
+
+        <button type="submit">Shorten</button><br />
+      </form>
+      <h2>Shortened URLs</h2>
+
+      <ul id="shortend-urls"></ul>
+    </div>
+    <script>
+        const shortForm  = document.getElementById('shortenForm');
+        shortForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData=  new FormData(event.target);
+            const url = formData.get("url");
+            const shortcode = formData.get("shortcode");
+            console.log(url,shortcode);
+        })
+    </script>
+  </body>
+</html>
