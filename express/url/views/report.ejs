@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded JS</title>
+</head>
+<body>
+    <%- include('hearder') %>
+    <h1>Student Report Card</h1>
+    <div>
+    <% studentData.map((data,index) =>  {%>
+        <p>Name: <%= data.name %></p>
+        <p>Address: <%= data.address %></p>
+        <p>Age: <%= data.age %></p>
+   <% }) %>
+
+   <%- include('footer') %>
+</div>
+</body>
+</html>
