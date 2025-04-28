@@ -8,7 +8,7 @@
   <body>
     <div class="Container">
       <h1>URL Shortner</h1>
-      <form action="" id="shortenForm">
+      <form action="/" method="post">
         <label for="">Enter URL: </label><br />
         <input type="text" name="url" id="url" /><br />
         <label for="">Enter ShortCode: </label><br />
@@ -18,18 +18,12 @@
       </form>
       <h2>Shortened URLs</h2>
 
-      <ul id="shortend-urls"></ul>
+      <ul>
+        {{shortened_urls}}
+      </ul>
     </div>
     <script>
-        const shortForm  = document.getElementById('shortenForm');
-        shortForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const formData=  new FormData(event.target);
-            const url = formData.get("url");
-            const shortcode = formData.get("shortcode");
-            console.log(url,shortcode);
-        })
+      
     </script>
   </body>
 </html>
