@@ -31,7 +31,7 @@ const loadLinks = async () => {
         Object.entries(links)
           .map(
             ([shortCode, url]) =>
-              `<li><a href="/${shortCode} target="_blank">${req.host}/${shortCode}</a>${url}</li>`
+              `<li><a href="/${shortCode}" target="_blank">${req.host}/${shortCode}</a>${url}</li>`
           )
           .join("")
       );
