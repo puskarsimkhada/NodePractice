@@ -8,16 +8,16 @@ export const urlGetShortner = async (req, res) => {
     const file = await readFile(path.join("views", "index.html"));
     const links = await loadLinks();
 
-    const content = file.toString().replaceAll(
-      " {{shortened_urls}}",
-      Object.entries(links)
-        .map(
-          ([shortCode, url]) =>
-            `<li><a href="/${shortCode}" target="_blank">${req.host}/${shortCode}</a>${url}</li>`
-        )
-        .join("")
-    );
-    return res.send(content);
+    // const content = file.toString().replaceAll(
+    //   " {{shortened_urls}}",
+    //   Object.entries(links)
+    //     .map(
+    //       ([shortCode, url]) =>
+    //         `<li><a href="/${shortCode}" target="_blank">${req.host}/${shortCode}</a>${url}</li>`
+    //     )
+    //     .join("")
+    // );
+    // return res.send(content);
   } catch (error) {
     return res.status(500).send("Internal Server Error");
   }
@@ -28,6 +28,7 @@ export const urlShortnerPost = async (req, res) => {
     const { url, shortCode } = req.body;
     const finalShortCode = shortCode || crypto.randomBytes(4).toString("hex");
     const links = await loadLinks();
+    
     if (links[finalShortCode]) {
       return res.status(400).send("already exist");
     }
@@ -41,12 +42,11 @@ export const urlShortnerPost = async (req, res) => {
 
 export const urlShortcode = async (req, res) => {
   try {
-    const { shortCode } = req.params;
+    const { shortcode } = req.params;
     const links = await loadLinks();
+    if (!links[shortcode]) return res.status(404).send("404 Error");
 
-    if (!links[shortCode]) return res.status(404).send("404 Error");
-
-    return res.redirect(links[shortCode]);
+    return res.redirect(links[shortcode]);
   } catch (error) {
     console.error(error);
     return res.status(500).send("Internal  Error Occured");
